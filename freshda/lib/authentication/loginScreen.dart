@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:freshda/authentication/registerScreen.dart';
 import 'package:freshda/constant.dart';
+import 'package:freshda/dashboard/homeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({ Key? key }) : super(key: key);
@@ -22,8 +24,11 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.all(25),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
-                color: grayBackground,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/BGFish.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
               child: Column(
                 children: [
@@ -200,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: MediaQuery.of(context).size.width * 0.50,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: customBlue,
+                          color: Colors.transparent,
                           borderRadius: BorderRadius.circular(35),
                           boxShadow: [
                             BoxShadow(
@@ -224,7 +229,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LoginScreen(),
+                          builder: (context) => const HomeScreen(),
                         ));
                           },
                           child: Padding(
@@ -262,7 +267,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             TextButton(
                               onPressed: () {
-                                //Navigator.pushNamed(context, '/signup');
+                                Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const RegisterScreen(),
+                                ));
                               },
                               child: const Text(
                                 'SIGN UP',

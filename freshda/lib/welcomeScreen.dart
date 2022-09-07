@@ -20,7 +20,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           padding: const EdgeInsets.all(25),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          color: const Color(0xFF212526),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/BGFish.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Column(
             children: [
               Container(
