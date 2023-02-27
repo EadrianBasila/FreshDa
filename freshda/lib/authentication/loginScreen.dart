@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           child: TextFormField(
-                            autofocus: true,
+                            autofocus: false,
                             initialValue: '',
                             style: const TextStyle(
                               fontSize: 30,
@@ -110,6 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const Text(
                           'Password',
                           style: TextStyle(
+                            
                             fontSize: 18,
                             fontFamily: 'LawyerGothic',
                             color: grayMaintext,
@@ -131,8 +132,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           child: TextFormField(
-                            autofocus: true,
+                            autofocus: false,
                             initialValue: '',
+                            obscureText: true,
                             style: const TextStyle(
                               fontSize: 30,
                               color: customBlue,

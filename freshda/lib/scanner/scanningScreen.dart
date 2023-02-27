@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:freshda/constant.dart';
 import 'package:freshda/dashboard/homeScreen.dart';
@@ -12,9 +13,40 @@ class ScanningSCreen extends StatefulWidget {
 
 class _ScanningSCreenState extends State<ScanningSCreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late List<CameraDescription> cameras;
+  late CameraController cameraController;
+
+  @override
+  void initState() {
+    startCamera();
+    super.initState();
+  }
+
+  void startCamera() async {
+    cameras = await availableCameras();
+    cameraController =
+        CameraController(cameras[0], ResolutionPreset.high, enableAudio: false);
+    await cameraController.initialize().then((value) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  @override
+  void dispose() {
+    cameraController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (!cameraController.value.isInitialized) {
+      return SizedBox();
+    }
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -94,19 +126,20 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 20),
-                height: MediaQuery.of(context).size.height * 0.5,
-                decoration: const BoxDecoration(
-                  color: grayContainer,
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: Image.asset(
-                    'assets/MilkFishFull.png',
-                    fit: BoxFit.cover,
+                  margin: EdgeInsets.only(bottom: 20),
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: const BoxDecoration(
+                    color: grayContainer,
                   ),
-                ),
-              ),
+                  // child: ClipRRect(
+                  //   borderRadius: BorderRadius.circular(30),
+                  //   child: Image.asset(
+                  //     'assets/MilkFishFull.png',
+                  //     fit: BoxFit.cover,
+                  //   ),
+                  // ),
+                  child: CameraPreview(cameraController)),
               Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Container(

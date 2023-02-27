@@ -98,7 +98,7 @@ class _MilkFishState extends State<MilkFish> {
                                   
                                   ),
                                    Text(
-                                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl, eu aliquam nisl nunc euismod nisl. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl, eu aliquam nisl nunc euismod nisl.',
+                                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl, eu aliquam nisl nunc euismod nisl. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl.',
                                     style: TextStyle(
                                       color: graySubtextLight,
                                       fontSize: 15,

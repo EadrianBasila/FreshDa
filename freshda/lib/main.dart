@@ -3,6 +3,7 @@ import 'package:freshda/constant.dart';
 import 'package:freshda/welcomeScreen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

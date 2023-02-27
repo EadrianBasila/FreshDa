@@ -1,8 +1,10 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:freshda/constant.dart';
 import 'package:freshda/database/databaseScreen.dart';
 import 'package:freshda/scanner/scanningScreen.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'dart:io';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -40,14 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: const BorderRadius.only(
                         bottomRight: Radius.circular(40),
                         bottomLeft: Radius.circular(40.0)),
-                        boxShadow: [
-                            BoxShadow(
-                              color: graySubtextLight.withOpacity(0.1),
-                              spreadRadius: 5,
-                              blurRadius: 10,
-                              offset: const Offset(0, 10),
-                            ),
-                          ],
+                    boxShadow: [
+                      BoxShadow(
+                        color: graySubtextLight.withOpacity(0.1),
+                        spreadRadius: 5,
+                        blurRadius: 10,
+                        offset: const Offset(0, 10),
+                      ),
+                    ],
                   ),
                   child: Column(
                     children: [
@@ -143,9 +145,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     BorderRadius.circular(10),
                                               ),
                                               child: ClipRRect(
-                                                borderRadius: const BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft:
-                                                      const Radius.circular(10.0),
+                                                      const Radius.circular(
+                                                          10.0),
                                                   bottomLeft:
                                                       Radius.circular(10.0),
                                                 ),
@@ -239,11 +243,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     BorderRadius.circular(10),
                                               ),
                                               child: ClipRRect(
-                                                borderRadius: const BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft:
-                                                      const Radius.circular(10.0),
+                                                      const Radius.circular(
+                                                          10.0),
                                                   bottomLeft:
-                                                      const Radius.circular(10.0),
+                                                      const Radius.circular(
+                                                          10.0),
                                                 ),
                                                 child: Image.asset(
                                                     'assets/MackerelHalf.png',
@@ -335,9 +342,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     BorderRadius.circular(10),
                                               ),
                                               child: ClipRRect(
-                                                borderRadius: const BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft:
-                                                      const Radius.circular(10.0),
+                                                      const Radius.circular(
+                                                          10.0),
                                                   bottomLeft:
                                                       Radius.circular(10.0),
                                                 ),
@@ -431,7 +440,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     BorderRadius.circular(10),
                                               ),
                                               child: ClipRRect(
-                                                borderRadius: const BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft:
                                                       Radius.circular(10.0),
                                                   bottomLeft:
@@ -569,11 +579,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Row(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(left:10.0),
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0),
                                               child: ClipRRect(
-                                                borderRadius: const BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft:
-                                                    Radius.circular(20.0),
+                                                      Radius.circular(20.0),
                                                   bottomLeft:
                                                       Radius.circular(20.0),
                                                 ),
@@ -644,11 +656,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Row(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(left:10.0),
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0),
                                               child: ClipRRect(
-                                                borderRadius: const BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft:
-                                                    Radius.circular(20.0),
+                                                      Radius.circular(20.0),
                                                   bottomLeft:
                                                       Radius.circular(20.0),
                                                 ),
@@ -719,11 +733,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Row(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(left:10.0),
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0),
                                               child: ClipRRect(
-                                                borderRadius: const BorderRadius.only(
+                                                borderRadius:
+                                                    const BorderRadius.only(
                                                   topLeft:
-                                                    Radius.circular(20.0),
+                                                      Radius.circular(20.0),
                                                   bottomLeft:
                                                       Radius.circular(20.0),
                                                 ),
@@ -791,6 +807,53 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                             ),
+                            // Container(
+                            //   padding: const EdgeInsets.all(5),
+                            //   height: 80,
+                            //   width: MediaQuery.of(context).size.width * 0.39,
+                            //   decoration: BoxDecoration(
+                            //     color: Colors.transparent,
+                            //     borderRadius: BorderRadius.circular(35),
+                            //     boxShadow: [
+                            //       BoxShadow(
+                            //         color: customRed.withOpacity(0.3),
+                            //         spreadRadius: 2,
+                            //         blurRadius: 18,
+                            //       ),
+                            //     ],
+                            //   ),
+                            //   child: ElevatedButton(
+                            //     onPressed: () {
+                            //       Navigator.push(
+                            //         context,
+                            //         MaterialPageRoute(
+                            //             builder: (context) =>
+                            //                 const ScanningSCreen()),
+                            //       );
+                            //     },
+                            //     child: const Padding(
+                            //       padding:
+                            //           EdgeInsets.only(top: 10.0, bottom: 10),
+                            //       child: const Text(
+                            //         'SCAN',
+                            //         style: TextStyle(
+                            //           fontSize: 30,
+                            //           fontFamily: 'LawyerGothic',
+                            //           color: grayMaintext,
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     style: ButtonStyle(
+                            //         backgroundColor: MaterialStateProperty.all(
+                            //           customRed,
+                            //         ),
+                            //         shape: MaterialStateProperty.all<
+                            //                 RoundedRectangleBorder>(
+                            //             RoundedRectangleBorder(
+                            //           borderRadius: BorderRadius.circular(35.0),
+                            //         ))),
+                            //   ),
+                            // ),
                             Container(
                               padding: const EdgeInsets.all(5),
                               height: 80,
@@ -815,18 +878,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                             const ScanningSCreen()),
                                   );
                                 },
-                                child: const Padding(
-                                  padding: EdgeInsets.only(
-                                      top: 10.0, bottom: 10),
-                                  child: const Text(
-                                    'SCAN',
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      fontFamily: 'LawyerGothic',
-                                      color: grayMaintext,
-                                    ),
-                                  ),
-                                ),
                                 style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
                                       customRed,
@@ -836,6 +887,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                         RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(35.0),
                                     ))),
+                                child: const Padding(
+                                  padding:
+                                      EdgeInsets.only(top: 10.0, bottom: 10),
+                                  child: Text(
+                                    'SCAN',
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                      fontFamily: 'LawyerGothic',
+                                      color: grayMaintext,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                             Container(

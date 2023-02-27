@@ -99,7 +99,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         Text(
                           'Proceed',
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 28,
                             fontFamily: 'LawyerGothic',
                             color: grayMaintext,
                           ),
