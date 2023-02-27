@@ -66,11 +66,11 @@ class _MilkFishState extends State<MilkFish> {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(left:20, right:20, bottom:20),
+                              margin: EdgeInsets.only(
+                                  left: 20, right: 20, bottom: 20),
                               padding: EdgeInsets.all(20),
-                              height: MediaQuery.of(context).size.height *
-                                  0.70 /
-                                  2.7,
+                              height:
+                                  MediaQuery.of(context).size.height * 0.70 / 3,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: grayButton,
@@ -86,7 +86,7 @@ class _MilkFishState extends State<MilkFish> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: const [
-                                   Text(
+                                  Text(
                                     'ABOUT',
                                     style: TextStyle(
                                         color: customYellow,
@@ -95,10 +95,9 @@ class _MilkFishState extends State<MilkFish> {
                                   ),
                                   const SizedBox(
                                     height: 10,
-                                  
                                   ),
-                                   Text(
-                                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl, eu aliquam nisl nunc euismod nisl. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl.',
+                                  Text(
+                                    'A milkfish is a species of fish that lives in tropical and subtropical waters of the Indian and Pacific Oceans. It is an important source of food for many people, especially in Southeast Asia. It has a silver color, a streamlined body, and a forked tail.',
                                     style: TextStyle(
                                       color: graySubtextLight,
                                       fontSize: 15,
@@ -109,11 +108,11 @@ class _MilkFishState extends State<MilkFish> {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(left:20, right:20, bottom:10),
+                              margin: EdgeInsets.only(
+                                  left: 20, right: 20, bottom: 10),
                               padding: EdgeInsets.all(20),
-                              height: MediaQuery.of(context).size.height *
-                                  0.70 /
-                                  5,
+                              height:
+                                  MediaQuery.of(context).size.height * 0.70 / 4,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: grayButton,
@@ -127,13 +126,13 @@ class _MilkFishState extends State<MilkFish> {
                                 ],
                               ),
                               child: Text(
-                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl, eu aliquam nisl nunc euismod nisl. ',
-                               style: TextStyle(
-                                 color: graySubtextLight,
-                                 fontSize: 15,
-                               ),
-                               textAlign: TextAlign.justify,
-                                  ),
+                                'Milkfish tastes similar to catfish when cooked. The meat is white flaky flesh with a mildly chewy texture that flakes easily. It is typically deep-fried or baked with herbs and spices, but can also be cooked in soup, sauteed, poached, grilled, broiled, or steamed.',
+                                style: TextStyle(
+                                  color: graySubtextLight,
+                                  fontSize: 15,
+                                ),
+                                textAlign: TextAlign.justify,
+                              ),
                             ),
                           ],
                         ),
@@ -159,12 +158,13 @@ class _MilkFishState extends State<MilkFish> {
                         child: Center(
                           child: TextButton(
                             onPressed: () {
-                                Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const DatabaseScreen(),
-                                ));
-                              },
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DatabaseScreen(),
+                                  ));
+                            },
                             child: Text(
                               'Back',
                               style: TextStyle(

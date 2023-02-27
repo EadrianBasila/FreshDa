@@ -26,7 +26,6 @@ class AuthMethods {
     required String email,
     required String firstName,
     required String lastName,
-    required String birthDate,
     required String password,
     required String username,
     required BuildContext context,
@@ -53,7 +52,6 @@ class AuthMethods {
             username: username,
             firstName: firstName,
             lastName: lastName,
-            birthDate: birthDate,
             uid: cred.user!.uid,
             email: email,
           );

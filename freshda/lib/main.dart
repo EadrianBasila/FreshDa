@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:freshda/constant.dart';
 import 'package:freshda/welcomeScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  ErrorWidget.builder = (FlutterErrorDetails details) => Container();
+
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -14,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'FreshDa',
       theme: ThemeData(
         primarySwatch: Colors.cyan,
       ),

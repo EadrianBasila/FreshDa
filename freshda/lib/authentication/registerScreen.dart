@@ -3,6 +3,7 @@ import 'package:freshda/authentication/loginScreen.dart';
 import 'package:freshda/constant.dart';
 import 'package:freshda/resources/authMethods.dart';
 import 'package:freshda/resources/snackBar.dart';
+import 'package:freshda/widgets/textField.dart';
 import 'package:page_transition/page_transition.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -17,7 +18,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _birthdateController = TextEditingController();
   final TextEditingController _firstnameController = TextEditingController();
   final TextEditingController _lastnameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -35,8 +35,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
 
     // signup user using our authmethodds
-    if (_birthdateController.text == "" ||
-        _usernameController.text == "" ||
+    if (_usernameController.text == "" ||
         _emailController.text == "" ||
         _firstnameController.text == "" ||
         _lastnameController.text == "" ||
@@ -58,7 +57,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           email: _emailController.text,
           firstName: _firstnameController.text,
           lastName: _lastnameController.text,
-          birthDate: _birthdateController.text,
           password: _passwordController.text,
           username: _usernameController.text,
           context: context,
@@ -101,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: Container(
                 padding: const EdgeInsets.all(25),
                 height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                // width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage("assets/BGFish.png"),
@@ -116,7 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            height: MediaQuery.of(context).size.height * 0.05,
+                            height: MediaQuery.of(context).size.height * 0.03,
                           ),
                           const Text(
                             'FRESHDA.',
@@ -126,64 +124,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 fontFamily: 'LawyerGothic'),
                           ),
                           Container(
-                            height: MediaQuery.of(context).size.height * 0.1,
+                            height: MediaQuery.of(context).size.height * 0.05,
                           ),
                           const Text(
                             'Email',
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               fontFamily: 'LawyerGothic',
                               color: grayMaintext,
                             ),
                           ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.08,
-                            padding: const EdgeInsets.only(
-                                left: 25, right: 25, top: 6, bottom: 7),
-                            margin: const EdgeInsets.only(top: 5),
-                            decoration: BoxDecoration(
-                              color: grayContainer,
-                              borderRadius: BorderRadius.circular(25),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white.withOpacity(0.2),
-                                  spreadRadius: 2,
-                                  blurRadius: 9,
-                                ),
-                              ],
-                            ),
-                            child: TextFormField(
-                              autofocus: true,
-                              initialValue: '',
-                              style: const TextStyle(
-                                fontSize: 30,
-                                color: customYellow,
-                              ),
-                              decoration: const InputDecoration(
-                                //labelText: 'Password',
-                                isDense: true,
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 0, vertical: 5),
-                                border: InputBorder.none,
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15.0)),
-                                  borderSide: BorderSide(
-                                      color: Colors.transparent, width: 2),
-                                ),
-                              ),
-                              onChanged: (value) {
-                                setState(() {
-                                  //firstName = value;
-                                });
-                              },
-                              validator: (String? value) {
-                                if (value == null || value.trim().isEmpty) {
-                                  return "required";
-                                }
-                                return null;
-                              },
-                            ),
+                          TextFieldInput(
+                            textInputType: TextInputType.emailAddress,
+                            textEditingController: _emailController,
+                            textCapitalization: TextCapitalization.none,
                           ),
                           const SizedBox(
                             height: 25,
@@ -191,59 +145,69 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           const Text(
                             'Username',
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               fontFamily: 'LawyerGothic',
                               color: grayMaintext,
                             ),
                           ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.08,
-                            padding: const EdgeInsets.only(
-                                left: 25, right: 25, top: 7, bottom: 7),
-                            margin: const EdgeInsets.only(top: 5, bottom: 5),
-                            decoration: BoxDecoration(
-                              color: grayContainer,
-                              borderRadius: BorderRadius.circular(25),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white.withOpacity(0.2),
-                                  spreadRadius: 2,
-                                  blurRadius: 9,
-                                ),
-                              ],
-                            ),
-                            child: TextFormField(
-                              autofocus: true,
-                              initialValue: '',
-                              style: const TextStyle(
-                                fontSize: 30,
-                                color: customYellow,
-                              ),
-                              decoration: const InputDecoration(
-                                //labelText: 'Username',
-                                isDense: true,
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 0, vertical: 5),
-                                border: InputBorder.none,
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15.0)),
-                                  borderSide: BorderSide(
-                                      color: Colors.transparent, width: 2),
+                          TextFieldInput(
+                            textInputType: TextInputType.text,
+                            textEditingController: _usernameController,
+                            textCapitalization: TextCapitalization.none,
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      'First Name',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontFamily: 'LawyerGothic',
+                                        color: grayMaintext,
+                                      ),
+                                    ),
+                                    TextFieldInput(
+                                      textInputType: TextInputType.text,
+                                      textEditingController:
+                                          _firstnameController,
+                                      textCapitalization:
+                                          TextCapitalization.sentences,
+                                    ),
+                                  ],
                                 ),
                               ),
-                              onChanged: (value) {
-                                setState(() {
-                                  //firstName = value;
-                                });
-                              },
-                              validator: (String? value) {
-                                if (value == null || value.trim().isEmpty) {
-                                  return "required";
-                                }
-                                return null;
-                              },
-                            ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      'Last Name',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontFamily: 'LawyerGothic',
+                                        color: grayMaintext,
+                                      ),
+                                    ),
+                                    TextFieldInput(
+                                      textInputType: TextInputType.text,
+                                      textEditingController:
+                                          _lastnameController,
+                                      textCapitalization:
+                                          TextCapitalization.sentences,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                           const SizedBox(
                             height: 25,
@@ -251,66 +215,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           const Text(
                             'Password',
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               fontFamily: 'LawyerGothic',
                               color: grayMaintext,
                             ),
                           ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.08,
-                            padding: const EdgeInsets.only(
-                                left: 25, right: 25, top: 6, bottom: 7),
-                            margin: const EdgeInsets.only(top: 5),
-                            decoration: BoxDecoration(
-                              color: grayContainer,
-                              borderRadius: BorderRadius.circular(25),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white.withOpacity(0.2),
-                                  spreadRadius: 2,
-                                  blurRadius: 9,
-                                ),
-                              ],
-                            ),
-                            child: TextFormField(
-                              autofocus: true,
-                              initialValue: '',
-                              obscureText: true,
-                              style: const TextStyle(
-                                fontSize: 30,
-                                color: customYellow,
-                              ),
-                              decoration: const InputDecoration(
-                                //labelText: 'Password',
-                                isDense: true,
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 0, vertical: 5),
-                                border: InputBorder.none,
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15.0)),
-                                  borderSide: BorderSide(
-                                      color: Colors.transparent, width: 2),
-                                ),
-                              ),
-                              onChanged: (value) {
-                                setState(() {
-                                  //firstName = value;
-                                });
-                              },
-                              validator: (String? value) {
-                                if (value == null || value.trim().isEmpty) {
-                                  return "required";
-                                }
-                                return null;
-                              },
-                            ),
+                          TextFieldInput(
+                            textInputType: TextInputType.text,
+                            textEditingController: _passwordController,
+                            textCapitalization: TextCapitalization.none,
+                            isPass: true,
                           ),
                           const SizedBox(
-                            height: 50,
+                            height: 25,
+                          ),
+                          const Text(
+                            'Confirm Password',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'LawyerGothic',
+                              color: grayMaintext,
+                            ),
+                          ),
+                          TextFieldInput(
+                            textInputType: TextInputType.text,
+                            textEditingController: _confpassController,
+                            textCapitalization: TextCapitalization.none,
+                            isPass: true,
+                          ),
+                          const SizedBox(
+                            height: 30,
                           ),
                         ],
                       ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.03,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -342,11 +282,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   borderRadius: BorderRadius.circular(35.0),
                                 ))),
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const LoginScreen(),
-                                  ));
+                              signUpUser();
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //       builder: (context) => const LoginScreen(),
+                              //     ));
                             },
                             child: Padding(
                               padding:

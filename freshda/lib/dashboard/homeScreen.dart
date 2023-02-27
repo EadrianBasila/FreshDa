@@ -1,4 +1,6 @@
 import 'package:camera/camera.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:freshda/constant.dart';
 import 'package:freshda/database/databaseScreen.dart';
@@ -15,6 +17,29 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final user = FirebaseAuth.instance.currentUser;
+
+  String? firstName;
+  String? lastName;
+
+  getUserData() async {
+    final userData = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get();
+    setState(() {
+      firstName = userData['firstName'];
+      lastName = userData['lastName'];
+    });
+    print("First Name: $firstName");
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUserData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                  padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
                   height: MediaQuery.of(context).size.height * 0.38,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
@@ -64,8 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  const Text(
-                                    'Juan dela Cruz',
+                                  Text(
+                                    "$firstName $lastName",
                                     style: const TextStyle(
                                       color: Colors.black26,
                                       fontSize: 15,
@@ -195,8 +220,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           animation: true,
                                           lineHeight: 15.0,
                                           animationDuration: 1500,
-                                          percent: 0.8,
-                                          center: const Text("80.0%",
+                                          percent: 0.78,
+                                          center: const Text("78.0%",
                                               style: TextStyle(
                                                   color: graySubtextDark,
                                                   fontSize: 12)),
@@ -294,8 +319,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           animation: true,
                                           lineHeight: 15.0,
                                           animationDuration: 1500,
-                                          percent: 0.8,
-                                          center: const Text("80.0%",
+                                          percent: 0.98,
+                                          center: const Text("98.0%",
                                               style: TextStyle(
                                                   color: graySubtextDark,
                                                   fontSize: 12)),
@@ -392,8 +417,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           animation: true,
                                           lineHeight: 15.0,
                                           animationDuration: 1500,
-                                          percent: 0.8,
-                                          center: const Text("80.0%",
+                                          percent: 0.85,
+                                          center: const Text("85.0%",
                                               style: TextStyle(
                                                   color: graySubtextDark,
                                                   fontSize: 12)),
@@ -489,8 +514,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           animation: true,
                                           lineHeight: 15.0,
                                           animationDuration: 1500,
-                                          percent: 0.8,
-                                          center: const Text("80.0%",
+                                          percent: 0.67,
+                                          center: const Text("67.0%",
                                               style: TextStyle(
                                                   color: graySubtextDark,
                                                   fontSize: 12)),
@@ -525,7 +550,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       const Padding(
                         padding: EdgeInsets.only(
-                            left: 20.0, right: 20, top: 20, bottom: 10),
+                            left: 20.0, right: 20, top: 30, bottom: 10),
                         child: Text(
                           'ALERTS',
                           style: TextStyle(
@@ -784,7 +809,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                         ),
-                        margin: const EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 30),
                         child: Row(
                           children: [
                             Container(

@@ -69,7 +69,7 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.70,
+                    height: MediaQuery.of(context).size.height - 250,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Container(
@@ -77,10 +77,10 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                           children: [
                             GestureDetector(
                               onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MilkFish(),
-                              )),
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const MilkFish(),
+                                  )),
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 20),
                                 child: Container(
@@ -120,9 +120,8 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                                             bottomLeft: Radius.circular(30.0),
                                           ),
                                           child: Image.asset(
-                                            'assets/MilkFishHalf.png',
-                                            fit:BoxFit.fitWidth  
-                                          ),
+                                              'assets/MilkFishHalf.png',
+                                              fit: BoxFit.fitWidth),
                                         ),
                                       ),
                                       Container(
@@ -169,10 +168,11 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                    width: MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.1,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.1,
                                                   ),
                                                   Container(
                                                     child: Column(
@@ -210,12 +210,12 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                             ),
                             GestureDetector(
                               onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Mackerel(),
-                              )),
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Mackerel(),
+                                  )),
                               child: Padding(
-                                padding: const EdgeInsets.only(top: 20),
+                                padding: const EdgeInsets.only(top: 30),
                                 child: Container(
                                   height:
                                       MediaQuery.of(context).size.height * 0.15,
@@ -253,9 +253,8 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                                             bottomLeft: Radius.circular(30.0),
                                           ),
                                           child: Image.asset(
-                                            'assets/MackerelHalf.png',
-                                            fit:BoxFit.fitWidth  
-                                          ),
+                                              'assets/MackerelHalf.png',
+                                              fit: BoxFit.fitWidth),
                                         ),
                                       ),
                                       Container(
@@ -302,10 +301,11 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                    width: MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.1,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.1,
                                                   ),
                                                   Container(
                                                     child: Column(
@@ -343,12 +343,12 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                             ),
                             GestureDetector(
                               onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Tilapia(),
-                              )),
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Tilapia(),
+                                  )),
                               child: Padding(
-                                padding: const EdgeInsets.only(top: 20),
+                                padding: const EdgeInsets.only(top: 30),
                                 child: Container(
                                   height:
                                       MediaQuery.of(context).size.height * 0.15,
@@ -386,9 +386,8 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                                             bottomLeft: Radius.circular(30.0),
                                           ),
                                           child: Image.asset(
-                                            'assets/TilapiaHalf.png',
-                                            fit:BoxFit.fitWidth  
-                                          ),
+                                              'assets/TilapiaHalf.png',
+                                              fit: BoxFit.fitWidth),
                                         ),
                                       ),
                                       Container(
@@ -435,10 +434,11 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                    width: MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.1,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.1,
                                                   ),
                                                   Container(
                                                     child: Column(
@@ -476,12 +476,12 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                             ),
                             GestureDetector(
                               onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const RedSnapper(),
-                              )),
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const RedSnapper(),
+                                  )),
                               child: Padding(
-                                padding: const EdgeInsets.only(top: 20),
+                                padding: const EdgeInsets.only(top: 30),
                                 child: Container(
                                   height:
                                       MediaQuery.of(context).size.height * 0.15,
@@ -519,9 +519,8 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                                             bottomLeft: Radius.circular(30.0),
                                           ),
                                           child: Image.asset(
-                                            'assets/RedSnapperHalf.png',
-                                            fit:BoxFit.fitWidth  
-                                          ),
+                                              'assets/RedSnapperHalf.png',
+                                              fit: BoxFit.fitWidth),
                                         ),
                                       ),
                                       Container(
@@ -568,10 +567,11 @@ class _DatabaseScreenState extends State<DatabaseScreen> {
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                    width: MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.1,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.1,
                                                   ),
                                                   Container(
                                                     child: Column(

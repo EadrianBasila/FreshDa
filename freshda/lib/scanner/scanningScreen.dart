@@ -16,6 +16,8 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
   late List<CameraDescription> cameras;
   late CameraController cameraController;
 
+  bool isScanned = false;
+
   @override
   void initState() {
     startCamera();
@@ -39,6 +41,7 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
   @override
   void dispose() {
     cameraController.dispose();
+    isScanned = false;
     super.dispose();
   }
 
@@ -70,6 +73,9 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
                           MaterialPageRoute(
                             builder: (context) => const HomeScreen(),
                           ));
+                      // setState(() {
+                      //   isScanned = false;
+                      // });
                     },
                     child: Container(
                       margin: const EdgeInsets.all(20),
@@ -128,7 +134,6 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
               Container(
                   margin: EdgeInsets.only(bottom: 20),
                   height: MediaQuery.of(context).size.height * 0.5,
-                  width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                     color: grayContainer,
                   ),
@@ -139,105 +144,167 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
                   //     fit: BoxFit.cover,
                   //   ),
                   // ),
-                  child: CameraPreview(cameraController)),
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Container(
-                  margin: const EdgeInsets.all(20),
-                  height: MediaQuery.of(context).size.height * 0.23,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: grayButton.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(45),
-                    boxShadow: [
-                      BoxShadow(
-                        color: grayButton.withOpacity(0.3),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 15, bottom: 5),
-                        height: 8,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          color: graySubtextLight,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.all(10),
-                            height: MediaQuery.of(context).size.height * 0.15,
-                            width: MediaQuery.of(context).size.width / 3,
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: const Radius.circular(10.0),
-                                bottomLeft: const Radius.circular(10.0),
-                              ),
-                              child: Image.asset('assets/MilkFishFull.png',
-                                  fit: BoxFit.fitWidth),
-                            ),
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Text(
-                                      'MILK FISH',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: customRed,
-                                        fontSize: 30,
-                                      ),
-                                    ),
-                                    const Text(
-                                      'Scan Confidence',
-                                      style: TextStyle(
-                                        color: Colors.black26,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    const Text(
-                                      'Freshness level - FRESH',
-                                      style: TextStyle(
-                                        color: Colors.cyan,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              LinearPercentIndicator(
-                                width: MediaQuery.of(context).size.width / 2.2,
-                                animation: true,
-                                lineHeight: 12.0,
-                                animationDuration: 1500,
-                                percent: 0.8,
-                                barRadius: const Radius.circular(16),
-                                progressColor: customBlue,
-                                backgroundColor: grayButton.withOpacity(0.5),
+                  child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.width,
+                          child: CameraPreview(cameraController)))),
+              isScanned
+                  ? Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                          margin: const EdgeInsets.all(20),
+                          height: MediaQuery.of(context).size.height * 0.23,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: grayButton.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(45),
+                            boxShadow: [
+                              BoxShadow(
+                                color: grayButton.withOpacity(0.3),
+                                spreadRadius: 2,
+                                blurRadius: 5,
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                          child: Column(
+                            children: [
+                              Container(
+                                margin:
+                                    const EdgeInsets.only(top: 15, bottom: 5),
+                                height: 8,
+                                width: 120,
+                                decoration: BoxDecoration(
+                                  color: graySubtextLight,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.all(10),
+                                    height: MediaQuery.of(context).size.height *
+                                        0.15,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: const Radius.circular(10.0),
+                                        bottomLeft: const Radius.circular(10.0),
+                                      ),
+                                      child: Image.asset(
+                                          'assets/MilkFishFull.png',
+                                          fit: BoxFit.fitWidth),
+                                    ),
+                                  ),
+                                  Column(
+                                    children: [
+                                      Container(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'MILK FISH',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: customRed,
+                                                fontSize: 30,
+                                              ),
+                                            ),
+                                            const Text(
+                                              'Scan Confidence',
+                                              style: TextStyle(
+                                                color: Colors.black26,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const Text(
+                                              'Freshness level - FRESH',
+                                              style: TextStyle(
+                                                color: Colors.cyan,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      LinearPercentIndicator(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                2.2,
+                                        animation: true,
+                                        lineHeight: 12.0,
+                                        animationDuration: 1500,
+                                        percent: 0.8,
+                                        barRadius: const Radius.circular(16),
+                                        progressColor: customBlue,
+                                        backgroundColor:
+                                            grayButton.withOpacity(0.5),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )),
+                    )
+                  : Column(
+                      children: [
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.1),
+                        Container(
+                          padding: const EdgeInsets.all(5),
+                          height: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(35),
+                            boxShadow: [
+                              BoxShadow(
+                                color: customRed.withOpacity(0.3),
+                                spreadRadius: 2,
+                                blurRadius: 18,
+                              ),
+                            ],
+                          ),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                isScanned = true;
+                              });
+                            },
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                  customRed,
+                                ),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(35.0),
+                                ))),
+                            child: const Padding(
+                              padding: EdgeInsets.only(top: 10.0, bottom: 10),
+                              child: Text(
+                                'START SCAN',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  fontFamily: 'LawyerGothic',
+                                  color: grayMaintext,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
               Container()
             ]),
           ),

@@ -4,7 +4,6 @@ class User {
   final String email;
   final String firstName;
   final String lastName;
-  final String birthDate;
   final String uid;
   final String username;
 
@@ -12,7 +11,6 @@ class User {
     required this.username,
     required this.firstName,
     required this.lastName,
-    required this.birthDate,
     required this.uid,
     required this.email,
   });
@@ -24,7 +22,6 @@ class User {
       username: snapshot["username"],
       firstName: snapshot["firstName"],
       lastName: snapshot["lastName"],
-      birthDate: snapshot["birthDate"],
       uid: snapshot["uid"],
       email: snapshot["email"],
     );
@@ -34,7 +31,6 @@ class User {
         "username": username,
         "firstName": firstName,
         "lastName": lastName,
-        "birthDate": birthDate,
         "uid": uid,
         "email": email,
       };
