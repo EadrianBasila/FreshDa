@@ -1,7 +1,10 @@
 import 'package:camera/camera.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:freshda/constant.dart';
 import 'package:freshda/dashboard/homeScreen.dart';
+import 'package:freshda/scanner/widgetScanResult.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class ScanningSCreen extends StatefulWidget {
@@ -16,11 +19,17 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
   late List<CameraDescription> cameras;
   late CameraController cameraController;
 
+  int milkfishScan = 0;
+  int mackerelScan = 0;
+  int tilapiaScan = 0;
+  int redsnapperScan = 0;
+
   bool isScanned = false;
 
   @override
   void initState() {
     startCamera();
+    getFields();
     super.initState();
   }
 
@@ -35,6 +44,37 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
       setState(() {});
     }).catchError((e) {
       print(e);
+    });
+  }
+
+  void getFields() async {
+    //get the fields in the user collection
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        setState(() {
+          milkfishScan = documentSnapshot['milkfishScan'];
+          mackerelScan = documentSnapshot['mackerelScan'];
+          tilapiaScan = documentSnapshot['tilapiaScan'];
+          redsnapperScan = documentSnapshot['redsnapperScan'];
+        });
+      }
+    });
+  }
+
+  //add fields to user collection in firebase
+  void addFields() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update({
+      'milkfishScan': milkfishScan,
+      'mackerelScan': mackerelScan,
+      'tilapiaScan': tilapiaScan,
+      'redsnapperScan': redsnapperScan,
     });
   }
 
@@ -151,111 +191,12 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
                           height: MediaQuery.of(context).size.width,
                           child: CameraPreview(cameraController)))),
               isScanned
-                  ? Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Container(
-                          margin: const EdgeInsets.all(20),
-                          height: MediaQuery.of(context).size.height * 0.23,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            color: grayButton.withOpacity(0.5),
-                            borderRadius: BorderRadius.circular(45),
-                            boxShadow: [
-                              BoxShadow(
-                                color: grayButton.withOpacity(0.3),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                margin:
-                                    const EdgeInsets.only(top: 15, bottom: 5),
-                                height: 8,
-                                width: 120,
-                                decoration: BoxDecoration(
-                                  color: graySubtextLight,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.all(10),
-                                    height: MediaQuery.of(context).size.height *
-                                        0.15,
-                                    width:
-                                        MediaQuery.of(context).size.width / 3,
-                                    child: ClipRRect(
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: const Radius.circular(10.0),
-                                        bottomLeft: const Radius.circular(10.0),
-                                      ),
-                                      child: Image.asset(
-                                          'assets/MilkFishFull.png',
-                                          fit: BoxFit.fitWidth),
-                                    ),
-                                  ),
-                                  Column(
-                                    children: [
-                                      Container(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'MILK FISH',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: customRed,
-                                                fontSize: 30,
-                                              ),
-                                            ),
-                                            const Text(
-                                              'Scan Confidence',
-                                              style: TextStyle(
-                                                color: Colors.black26,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            const Text(
-                                              'Freshness level - FRESH',
-                                              style: TextStyle(
-                                                color: Colors.cyan,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 15,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      LinearPercentIndicator(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                2.2,
-                                        animation: true,
-                                        lineHeight: 12.0,
-                                        animationDuration: 1500,
-                                        percent: 0.8,
-                                        barRadius: const Radius.circular(16),
-                                        progressColor: customBlue,
-                                        backgroundColor:
-                                            grayButton.withOpacity(0.5),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
+                  ? const WidgetScanResult(
+                      fish: 'MILK FISH',
+                      fishPic: 'MilkFishFull',
+                      freshnessLevel: 'FRESH',
+                      scanAccuracy: '80%',
+                      scanAccuracyPercent: 0.8,
                     )
                   : Column(
                       children: [
@@ -279,6 +220,11 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
                             onPressed: () {
                               setState(() {
                                 isScanned = true;
+                                //if scanned is milkfish then add 1
+                                if (isScanned == true) {
+                                  milkfishScan++;
+                                  addFields();
+                                }
                               });
                             },
                             style: ButtonStyle(

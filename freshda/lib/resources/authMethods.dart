@@ -54,6 +54,10 @@ class AuthMethods {
             lastName: lastName,
             uid: cred.user!.uid,
             email: email,
+            milkfishScan: 0,
+            mackarelScan: 0,
+            tilapiaScan: 0,
+            redsnapperScan: 0,
           );
 
           // adding user in our database

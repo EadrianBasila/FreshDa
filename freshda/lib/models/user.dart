@@ -6,6 +6,10 @@ class User {
   final String lastName;
   final String uid;
   final String username;
+  final int milkfishScan;
+  final int mackarelScan;
+  final int tilapiaScan;
+  final int redsnapperScan;
 
   const User({
     required this.username,
@@ -13,6 +17,10 @@ class User {
     required this.lastName,
     required this.uid,
     required this.email,
+    required this.milkfishScan,
+    required this.mackarelScan,
+    required this.tilapiaScan,
+    required this.redsnapperScan,
   });
 
   static User fromSnap(DocumentSnapshot snap) {
@@ -24,6 +32,10 @@ class User {
       lastName: snapshot["lastName"],
       uid: snapshot["uid"],
       email: snapshot["email"],
+      milkfishScan: snapshot["milkfishScan"],
+      mackarelScan: snapshot["mackarelScan"],
+      tilapiaScan: snapshot["tilapiaScan"],
+      redsnapperScan: snapshot["redsnapperScan"],
     );
   }
 
@@ -33,5 +45,9 @@ class User {
         "lastName": lastName,
         "uid": uid,
         "email": email,
+        "milkfishScan": milkfishScan,
+        "mackarelScan": mackarelScan,
+        "tilapiaScan": tilapiaScan,
+        "redsnapperScan": redsnapperScan,
       };
 }
