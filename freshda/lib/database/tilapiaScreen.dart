@@ -98,7 +98,7 @@ class _TilapiaState extends State<Tilapia> {
                                   
                                   ),
                                    Text(
-                                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl, eu aliquam nisl nunc euismod nisl. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl.',
+                                    'Tilapia is a freshwater fish known for its mild flavor and adaptability in cooking. With its elongated body, scaleless skin, and firm white flesh, it can vary in color and is enjoyed worldwide. Its versatility shines through in the kitchen, as it can be baked, grilled, fried, or steamed, allowing for a range of culinary creations. The mild taste of tilapia makes it a popular choice for various seasonings and flavors, perfect for incorporating into different cuisines and recipes.',
                                     style: TextStyle(
                                       color: graySubtextLight,
                                       fontSize: 15,
@@ -127,7 +127,7 @@ class _TilapiaState extends State<Tilapia> {
                                 ],
                               ),
                               child: const Text(
-                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl, eu aliquam nisl nunc euismod nisl. ',
+                               "Tilapia, a freshwater fish with a mild flavor, is prized for its adaptability in cooking. It has an elongated body, scaleless skin, and firm white flesh that varies in color. Whether baked, grilled, fried, or steamed, tilapia's versatility shines through, making it a go-to option for various seasonings and flavors in different cuisines.",
                                style: TextStyle(
                                  color: graySubtextLight,
                                  fontSize: 15,

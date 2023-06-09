@@ -98,7 +98,7 @@ class _MackerelState extends State<Mackerel> {
                                   
                                   ),
                                    Text(
-                                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl, eu aliquam nisl nunc euismod nisl. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl.',
+                                    'The mackerel scad, known as Decapterus macarellus, is a slender, silver fish found in warm tropical and subtropical waters worldwide. It has a streamlined body, silvery coloration, and dark vertical stripes along its sides. Growing up to 18 inches in length, it possesses a pointed snout, a large mouth with sharp teeth, and a deeply forked tail. The mackerel scad is highly regarded for its rich, savory flavor, with a firm yet tender texture. Its taste is often compared to mackerel or sardines but milder. This versatile fish can be grilled, baked, fried, steamed, pickled, or smoked, offering a range of culinary options. It is prized by anglers and commonly enjoyed in coastal cuisines worldwide.',
                                     style: TextStyle(
                                       color: graySubtextLight,
                                       fontSize: 15,
@@ -127,7 +127,7 @@ class _MackerelState extends State<Mackerel> {
                                 ],
                               ),
                               child: Text(
-                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut aliquam aliquam, nunc nunc aliquam nisl, eu aliquam nisl nunc euismod nisl. ',
+                               'The mackerel scad, a slender silver fish with dark vertical stripes, is found in warm tropical and subtropical waters globally. It grows up to 18 inches long and has a streamlined body, pointed snout, large mouth, and deeply forked tail. Known for its rich, savory flavor, it has firm, tender flesh with a mild, buttery taste similar to mackerel or sardines. This versatile fish can be prepared by grilling, baking, frying, steaming, pickling, or smoking, and is cherished by anglers and coastal cuisine enthusiasts.',
                                style: TextStyle(
                                  color: graySubtextLight,
                                  fontSize: 15,
