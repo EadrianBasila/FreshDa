@@ -6,7 +6,6 @@ import 'package:freshda/constant.dart';
 import 'package:freshda/dashboard/widgetAlert.dart';
 import 'package:freshda/dashboard/widgetScan.dart';
 import 'package:freshda/database/databaseScreen.dart';
-import 'package:freshda/globalVar.dart';
 import 'package:freshda/scanner/scanningScreen.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'dart:io';
@@ -100,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Text(
                                     "$firstName $lastName",
                                     style: const TextStyle(
-                                      color: Colors.black26,
+                                      color: customBlue,
                                       fontSize: 15,
                                     ),
                                   ),
@@ -114,6 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                               Container(
+                                padding: const EdgeInsets.all(5),
                                 margin: const EdgeInsets.only(left: 20),
                                 height: 50,
                                 width: 50,
@@ -121,12 +121,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: grayPictureContainer,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: const Icon(
-                                  Icons.person,
-                                  color: graySubtextDark,
-                                  size: 30,
-                                ),
+                                child: Image.asset('assets/launcher.png',
+                                    fit: BoxFit.fitHeight),
                               ),
+                              // const Icon(
+                              //   Icons.person,
+                              //   color: graySubtextDark,
+                              //   size: 30,
+                              // ),
+                              //),
                             ],
                           ),
                           const SizedBox(
@@ -258,16 +261,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           scrollDirection: Axis.vertical,
                           child: Column(
                             children: const [
-                              WidgetAlert(
-                                time: '7min Ago',
-                                alert: 'Help us train FRESHDA!',
-                                alertPic: 'Alert',
-                              ),
-                              WidgetAlert(
-                                time: '7min Ago',
-                                alert: 'Help us train FRESHDA!',
-                                alertPic: 'Alert',
-                              ),
                               WidgetAlert(
                                 time: '7min Ago',
                                 alert: 'Help us train FRESHDA!',

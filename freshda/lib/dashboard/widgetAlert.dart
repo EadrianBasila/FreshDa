@@ -64,11 +64,16 @@ class WidgetAlert extends StatelessWidget {
                           color: graySubtextLight,
                           fontSize: 20,
                         )),
-                    const Text('Learn More >',
-                        style: TextStyle(
-                          color: customYellow,
-                          fontSize: 15,
-                        )),
+                    GestureDetector(
+                      onTap: () {
+                        //link redirect
+                      },
+                      child: const Text('Learn More >',
+                          style: TextStyle(
+                            color: customYellow,
+                            fontSize: 15,
+                          )),
+                    ),
                   ],
                 ),
               ],
