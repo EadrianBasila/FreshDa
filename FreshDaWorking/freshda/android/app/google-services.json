@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "980018055742",
+    "project_id": "freshda-32fdf",
+    "storage_bucket": "freshda-32fdf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980018055742:android:7cdac48fd2bfa8c34f1f6f",
+        "android_client_info": {
+          "package_name": "com.example.freshda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980018055742-268r6qet2tufgtk6rp7f0tufr8tjcd46.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQUrR0qXE4H7eKJDS6obHXQee-bAPQR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980018055742-268r6qet2tufgtk6rp7f0tufr8tjcd46.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

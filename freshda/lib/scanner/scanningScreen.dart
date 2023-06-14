@@ -6,6 +6,7 @@ import 'package:freshda/constant.dart';
 import 'package:freshda/dashboard/homeScreen.dart';
 import 'package:freshda/scanner/widgetScanResult.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:tflite/tflite.dart';
 
 class ScanningSCreen extends StatefulWidget {
   const ScanningSCreen({Key? key}) : super(key: key);
@@ -18,6 +19,9 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late List<CameraDescription> cameras;
   late CameraController cameraController;
+  CameraImage? cameraImage;
+  bool isFrontCam = false;
+  int cameraIndex = 0;
 
   int milkfishScan = 0;
   int mackerelScan = 0;
@@ -25,23 +29,94 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
   int redsnapperScan = 0;
 
   bool isScanned = false;
+  bool isRecognized = false;
+  String fishOutput = 'Scanning for Fish';
+  String confidence = "";
+  double confidenceValue = 0.0;
+  String fishPicture = "";
 
+  List<String> fishLabels = ['0 Bangus', '1 Tilapia', '2 Galunggong'];
+
+  List<String> fishNames = ['Milkfish', 'Tilapia', 'Mackerel Scad'];
+  List<String> fishPictures = ['MilkFishFull', 'TilapiaFull', 'MackerelFull'];
   @override
   void initState() {
     startCamera();
     getFields();
+    loadModel();
     super.initState();
+  }
+
+  loadModel() async {
+    await Tflite.loadModel(
+      model: 'assets/fish.tflite',
+      labels: 'assets/fishlabels.txt',
+      numThreads: 1,
+      isAsset: true,
+      useGpuDelegate: false,
+    );
+  }
+
+  runModel() async {
+    if (cameraImage != null) {
+      var recognitions = await Tflite.runModelOnFrame(
+        bytesList: cameraImage!.planes.map((plane) {
+          return plane.bytes;
+        }).toList(),
+        imageHeight: cameraImage!.height,
+        imageWidth: cameraImage!.width,
+        imageMean: 127.5,
+        imageStd: 127.5,
+        rotation: 90,
+        numResults: 2,
+        threshold: 0.1,
+        asynch: true,
+      );
+      print(recognitions);
+      recognitions!.forEach((response) {
+        setState(() {
+          //output = response['label'];
+          //textvoice = response['label'];
+
+          String modelResponse = response['label'];
+          if (fishLabels.contains(modelResponse)) {
+            double confidenceValue = response['confidence'];
+            double confidenceDecimal =
+                confidenceValue - confidenceValue.toInt();
+            List<String> confidenceArray =
+                confidenceDecimal.toStringAsFixed(4).split("");
+            String confidenceOutput =
+                "${confidenceArray[2]}${confidenceArray[3]}.${confidenceArray[4]}${confidenceArray[5]}";
+            //confidence = double.parse(confidenceOutput);
+            confidence = confidenceOutput;
+            confidenceValue = double.parse(confidenceOutput);
+            int index = fishLabels.indexOf(modelResponse);
+            String parsedFish = fishNames[index];
+            fishPicture = fishPictures[index];
+            print("Recognized Fish: $parsedFish Confidence: $confidence");
+            fishOutput = parsedFish;
+            isRecognized = true;
+          }
+        });
+      });
+    }
   }
 
   void startCamera() async {
     cameras = await availableCameras();
-    cameraController =
-        CameraController(cameras[0], ResolutionPreset.high, enableAudio: false);
+    cameraController = CameraController(
+        cameras[cameraIndex], ResolutionPreset.low,
+        enableAudio: false);
     await cameraController.initialize().then((value) {
       if (!mounted) {
         return;
       }
-      setState(() {});
+      setState(() {
+        cameraController.startImageStream((imageFromStream) {
+          cameraImage = imageFromStream;
+          runModel();
+        });
+      });
     }).catchError((e) {
       print(e);
     });
@@ -191,12 +266,12 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
                           height: MediaQuery.of(context).size.width,
                           child: CameraPreview(cameraController)))),
               isScanned
-                  ? const WidgetScanResult(
-                      fish: 'MILK FISH',
-                      fishPic: 'MilkFishFull',
+                  ? WidgetScanResult(
+                      fish: fishOutput,
+                      fishPic: fishPicture,
                       freshnessLevel: 'FRESH',
-                      scanAccuracy: '80%',
-                      scanAccuracyPercent: 0.8,
+                      scanAccuracy: '$confidence%',
+                      scanAccuracyPercent: confidenceValue,
                     )
                   : Column(
                       children: [
@@ -222,7 +297,7 @@ class _ScanningSCreenState extends State<ScanningSCreen> {
                                 isScanned = true;
                                 //if scanned is milkfish then add 1
                                 if (isScanned == true) {
-                                  milkfishScan++;
+                                  //milkfishScan++;
                                   addFields();
                                 }
                               });
